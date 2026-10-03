@@ -3,14 +3,14 @@
   "owner": { "name": "Vadym Chernets" },
   "metadata": {
     "description": "teamcall: a company's people from chat to a terminal agent in 30 days - pilot, fast path, champions, journal, six measurements, scale or stop. Buys nothing.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "teamcall",
       "source": "./",
       "description": "A pilot from 5 people to 30-50, a 20-minute fast path, a 5-hour champion path, one command for a repeated task, a transition journal, a report on six measurements and a scale-or-stop page; which seat already pays for which terminal agent. Buys nothing.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": { "name": "Vadym Chernets" },
       "license": "Apache-2.0",
       "keywords": ["adoption", "onboarding", "pilot", "for-companies"],
