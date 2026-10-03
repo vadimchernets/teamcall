@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 — 2026-10-03
+
+- Wording: no disclaimers. README's opening says what teamcall does, once.
+- Tests: a tone check reddens on disclaimers, excuses and apologies in what people read (five languages).
+
 ## 0.1.2 — 2026-10-03
 
 - README: the Zenodo DOI badge (the concept DOI always points to the latest version).

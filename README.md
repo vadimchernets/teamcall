@@ -6,7 +6,7 @@ A company's people, from the chat window to a terminal agent in 30 days — and 
 [Claude Code](https://claude.com/claude-code) plugin of Poly A1, for the person in a company who brings colleagues
 onto AI agents. Repository: [github.com/vadimchernets/teamcall](https://github.com/vadimchernets/teamcall).
 
-**teamcall plans, keeps the journal and counts; it buys nothing, opens no checkout and never asks for a card.**
+**teamcall plans, keeps the journal and counts; it buys nothing.**
 Seats are counted with [billcall](https://github.com/vadimchernets/billcall); the person responsible for the
 company's accounts buys.
 

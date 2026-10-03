@@ -16,7 +16,7 @@ and no `&` — `${CLAUDE_PLUGIN_ROOT}/hooks/python.ps1 teamcall say skills/teamc
 on one line; that is the form this skill's permission covers. Only if that path has a space in it, write
 `& "${CLAUDE_PLUGIN_ROOT}/hooks/python.ps1" …` instead (the person is then asked once). Never call `python3`,
 `python` or `py` yourself: the launcher finds a real Python 3.8+ and never starts the Microsoft Store or Apple stub.
-If it answers with one line saying teamcall "is paused" because this computer has no working Python 3 yet, tell the
+If it answers with one line saying teamcall "is paused" until this computer has Python 3, tell the
 person that in one plain line and write the same documents by hand from the steps below.
 
 The user said: $ARGUMENTS
