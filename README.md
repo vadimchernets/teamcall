@@ -1,5 +1,7 @@
 # teamcall
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23116725.svg)](https://doi.org/10.5281/zenodo.23116725)
+
 A company's people, from the chat window to a terminal agent in 30 days — and the numbers to show it worked. A
 [Claude Code](https://claude.com/claude-code) plugin of Poly A1, for the person in a company who brings colleagues
 onto AI agents. Repository: [github.com/vadimchernets/teamcall](https://github.com/vadimchernets/teamcall).
