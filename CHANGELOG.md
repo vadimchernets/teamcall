@@ -1,0 +1,10 @@
+# Changelog
+
+## 0.1.0 — 2026-10-02
+
+- First release: `plan`, `fast`, `champion`, `boost`, `claudemd`, `log`, `measure`, `report`, `decide`, `move`,
+  `agents` and `detect`, one skill, no hooks.
+- `data/agents.json`: sixteen terminal agents and plugins with the seat that already pays for each, its source page
+  and the day it was read, and the per-program rules gatecall enforces (Grok on a cleaned copy with a prepaid
+  balance, Kimi in a training folder, Antigravity and Gemini CLI with permissions one by one).
+- Dictionaries in English, Spanish, Portuguese, Russian and Ukrainian: file names and headings the person sees.

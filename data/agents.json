@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "about": "Terminal agents a company's people can move to, and which seat or plan already pays for each. Each row names the page it was read from and the day. rule = a per-program rule gatecall enforces (copy_only_prepaid, training_only, no_blanket_permission).",
+  "agents": [
+    {
+      "id": "claude-code", "name": "Claude Code", "vendor": "Anthropic", "binaries": ["claude"],
+      "included_in": "Claude Pro, Max, Team (Standard and Premium seats), Enterprise; or an Anthropic Console API key",
+      "company_seat": "Claude Team Standard or Premium, Enterprise",
+      "free_path": "",
+      "note": "Remote Control, cloud sessions and teleport need a claude.ai sign-in; an API key or a custom ANTHROPIC_BASE_URL turns Remote Control off.",
+      "rule": "",
+      "url": "https://code.claude.com/docs/en/setup", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "codex", "name": "Codex CLI", "vendor": "OpenAI", "binaries": ["codex"],
+      "included_in": "ChatGPT Free, Go, Plus, Pro, Business, Edu, Enterprise",
+      "company_seat": "ChatGPT Business or Enterprise",
+      "free_path": "ChatGPT Free (limited); Codex with an OpenRouter key",
+      "note": "", "rule": "",
+      "url": "https://developers.openai.com/codex/pricing", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "antigravity", "name": "Antigravity CLI (successor of Gemini CLI)", "vendor": "Google", "binaries": ["agy", "antigravity"],
+      "included_in": "Google AI Pro and Ultra (Gemini CLI stopped serving them on 18.06.2026); Gemini CLI stays served on Gemini Code Assist Standard and Enterprise licences",
+      "company_seat": "Gemini Code Assist Standard or Enterprise (Gemini CLI); Workspace with Google AI plans",
+      "free_path": "",
+      "note": "",
+      "rule": "no_blanket_permission",
+      "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "gemini-cli", "name": "Gemini CLI", "vendor": "Google", "binaries": ["gemini"],
+      "included_in": "Gemini Code Assist Standard ($19/$22.80) and Enterprise ($45/$54) licences, Google Cloud",
+      "company_seat": "Gemini Code Assist Standard or Enterprise",
+      "free_path": "",
+      "note": "", "rule": "no_blanket_permission",
+      "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "copilot-cli", "name": "GitHub Copilot CLI", "vendor": "GitHub", "binaries": ["copilot"],
+      "included_in": "All GitHub Copilot plans (\"All plans include Copilot CLI\"): Free, Pro, Business $19, Enterprise $39",
+      "company_seat": "Copilot Business or Enterprise",
+      "free_path": "Copilot Free",
+      "note": "", "rule": "",
+      "url": "https://docs.github.com/en/copilot/get-started/plans", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "grok-build", "name": "Grok Build", "vendor": "xAI", "binaries": ["grok"],
+      "included_in": "SuperGrok and X Premium+ (since 25.05.2026; v1.0 on 07.08.2026); no stand-alone plan",
+      "company_seat": "Grok Business ($30 per person)",
+      "free_path": "",
+      "note": "", "rule": "copy_only_prepaid",
+      "url": "https://x.ai/news/grok-build-cli", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "muse-code", "name": "Muse Code", "vendor": "Meta", "binaries": ["muse"],
+      "included_in": "Muse Code plans $5 / $15 / $50 a month, or pay per token (Muse Spark 1.x $1.25/$4.25 per 1M)",
+      "company_seat": "",
+      "free_path": "",
+      "note": "", "rule": "",
+      "url": "https://thenewstack.io/muse-code-sdk-pricing/", "checked": "2026-10-02", "status": "secondary"
+    },
+    {
+      "id": "kiro", "name": "Kiro CLI", "vendor": "Amazon (AWS)", "binaries": ["kiro-cli", "kiro"],
+      "included_in": "Kiro Free (50 credits), Pro $20 (1,000), Pro+ $40 (2,000), Power $200 (10,000); extra credits $0.04",
+      "company_seat": "Kiro Pro per user, Enterprise",
+      "free_path": "Kiro Free, 50 credits a month",
+      "note": "", "rule": "",
+      "url": "https://kiro.dev/blog/new-pricing-plans-and-auto/", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "cursor-cli", "name": "Cursor CLI", "vendor": "Cursor", "binaries": ["cursor-agent", "agent"],
+      "included_in": "Cursor plans; Teams Standard $40 per user ($32 billed yearly), Teams Premium $120 ($96)",
+      "company_seat": "Cursor Teams",
+      "free_path": "",
+      "note": "", "rule": "",
+      "url": "https://cursor.com/pricing", "checked": "2026-10-02", "status": "secondary"
+    },
+    {
+      "id": "opencode", "name": "OpenCode", "vendor": "open source (MIT)", "binaries": ["opencode"],
+      "included_in": "Free program; the company brings a key (z.ai GLM measured 4 of 6 tasks on 27.09.2026)",
+      "company_seat": "",
+      "free_path": "with free model keys",
+      "note": "", "rule": "",
+      "url": "https://github.com/sst/opencode", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "qwen-code", "name": "Qwen Code", "vendor": "Alibaba (open source)", "binaries": ["qwen"],
+      "included_in": "Free program; Alibaba Token Plan Team $20/$75/$200 per seat for people; the free OAuth tier ended on 15.04.2026",
+      "company_seat": "Alibaba Token Plan Team",
+      "free_path": "a local model or an OpenRouter free model",
+      "note": "", "rule": "",
+      "url": "https://github.com/QwenLM/qwen-code/issues/3203", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "kimi-code", "name": "Kimi Code (kimi)", "vendor": "Moonshot AI", "binaries": ["kimi"],
+      "included_in": "Kimi membership $19-199 (personal development only); Kimi Business $600 a year per seat, from 2",
+      "company_seat": "Kimi Business",
+      "free_path": "",
+      "note": "Has no read-only flag.", "rule": "training_only",
+      "url": "https://www.kimi.ai/resources/kimi-code-introduction", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "goose", "name": "Goose", "vendor": "Block (open source, Apache-2.0)", "binaries": ["goose"],
+      "included_in": "Free program; the company brings a model key or a local model",
+      "company_seat": "",
+      "free_path": "with a local model",
+      "note": "", "rule": "",
+      "url": "https://github.com/block/goose", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "aider", "name": "aider + Groq", "vendor": "open source (Apache-2.0)", "binaries": ["aider"],
+      "included_in": "Free program; Groq free tier 1,000 requests a day (aider + Groq measured 4 of 4 tasks on 27.09.2026)",
+      "company_seat": "",
+      "free_path": "Groq free tier",
+      "note": "", "rule": "",
+      "url": "https://console.groq.com/docs/rate-limits", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "sidecall", "name": "sidecall (Claude Code plugin)", "vendor": "Poly A1 (open source)", "binaries": [],
+      "included_in": "Free; asks the agents already installed (Codex, Antigravity, Grok, Kimi) the same question through their own subscriptions",
+      "company_seat": "",
+      "free_path": "free",
+      "note": "", "rule": "",
+      "url": "https://github.com/vadimchernets/sidecall", "checked": "2026-10-02", "status": "official"
+    },
+    {
+      "id": "roundcall", "name": "roundcall (Claude Code plugin)", "vendor": "Poly A1 (open source)", "binaries": [],
+      "included_in": "Free; one question to the AI chat sites the person is already signed in to, through their own Chrome",
+      "company_seat": "",
+      "free_path": "free",
+      "note": "", "rule": "",
+      "url": "https://github.com/vadimchernets/roundcall", "checked": "2026-10-02", "status": "official"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "teamcall",
+  "description": "Move a company's people from the chat window to a terminal agent in 30 days, and measure it: a pilot charter from 5 people to 30-50 with a one-page set-up for IT, a 20-minute fast path per person, a 5-hour champion path, the same task turned into one command (termboost), a transition journal, a report on six measurements (time, quality, coverage, repeatability, new capability, what a person checks) with the minutes of human help per first working result, a scale-or-stop page, and which seat already pays for which terminal agent. It counts and plans; it buys nothing.",
+  "version": "0.1.0",
+  "author": { "name": "Vadym Chernets" },
+  "homepage": "https://github.com/vadimchernets/teamcall",
+  "license": "Apache-2.0",
+  "keywords": ["adoption", "onboarding", "pilot", "champions", "terminal", "for-companies"]
+}

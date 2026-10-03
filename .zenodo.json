@@ -1,0 +1,8 @@
+{
+  "title": "teamcall: a company's people from chat to a terminal agent in 30 days, measured",
+  "description": "teamcall is a Claude Code plugin that moves a company's people from the chat window to a terminal agent and measures the move. It writes a pilot charter that grows from 5 people to 30-50 through champions, with a one-page set-up for IT; a 20-minute fast path per person and a 5-hour champion path; turns a task done in the app into one command in the terminal; keeps a transition journal; reports six measurements (time, quality, coverage, repeatability, new capability, what a person checks) and the minutes of human help per first working result, without names; writes a one-page decision to scale, fix and repeat, or stop; and lists which seat already pays for which terminal agent, each row with its source page and day. It buys nothing. Python standard library only, no network.",
+  "creators": [{ "name": "Chernets, Vadym" }],
+  "upload_type": "software",
+  "license": "apache-2.0",
+  "keywords": ["claude-code-plugin", "ai-adoption", "onboarding", "pilot", "change-management", "for-companies"]
+}

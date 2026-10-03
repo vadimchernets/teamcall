@@ -1,0 +1,15 @@
+teamcall
+Copyright 2026 Vadym Chernets
+
+This product includes software developed by Vadym Chernets, as part of Poly A1.
+
+The six measurements of a pilot (time, quality, coverage, repeatability, new capability, what a person
+checks) and the key number "minutes of human help per successful first artifact" come from the Poly A1
+author's own pilot plan (2026-09-19). "termboost" - the same task once in the app and once in the
+terminal, then again with one command - is an idea from the council run for the Poly A1 track for
+companies (2026-10-02), built here as `teamcall boost`.
+
+Public references (as read on 2026-10-02):
+- Claude Code install commands: https://code.claude.com/docs/en/setup
+- Remote Control and what turns it off: https://code.claude.com/docs/en/remote-control
+- Every row of data/agents.json names its own page and the day it was read.
