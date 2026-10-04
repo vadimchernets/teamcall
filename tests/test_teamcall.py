@@ -1,4 +1,5 @@
 """teamcall: the charter, the paths, termboost, the journal, the report, the decision and the agents table."""
+import ast
 import datetime
 import importlib.util
 import io
@@ -232,6 +233,10 @@ class TestWords:
         keys |= {"note_" + n for n in ("api_key", "base_url", "traffic", "signed_in")}
         keys |= {"claudemd_too_long", "claudemd_empty"} | {"move_w%d" % n for n in range(1, 5)}
         keys |= set(re.findall(r'"((?:setup|gives)_[a-z_]+)"', src))
+        # the daily cards: every card's three parts, the three buttons, the bot's answers
+        keys |= {"card_%d_%s" % (n, part) for n in range(1, tc.CARDS + 1) for part in ("title", "text", "show")}
+        keys |= {"lesson_" + a for a in tc.ANSWERS} | {"lesson_ack_" + a for a in tc.ANSWERS}
+        keys |= {"lesson_welcome", "lesson_bye", "lesson_unknown_link"}
         return keys
 
     @pytest.mark.parametrize("code", tc.LANGS)
@@ -256,12 +261,64 @@ class TestWords:
 
 
 class TestRules:
-    def test_no_network_module(self):
-        net = re.compile(r"^\s*(?:import|from)\s+(urllib|http\.client|socket|requests|httpx|ftplib|smtplib)\b", re.M)
+    # Modules that open the network. Only `lesson` uses them, and only inside its two doors in teamcall.py - three
+    # functions: post_json (an HTTPS POST to the Telegram Bot API or the WhatsApp Cloud API; ssl there picks the
+    # system's certificates when Python has none of its own), and webhook_handler with serve_webhook (the receiver
+    # WhatsApp brings the buttons to). Everything else in the plugin stays off the network.
+    NET = ("urllib.request", "urllib.error", "http.client", "http.server", "socket", "socketserver", "ssl", "requests",
+           "httpx", "urllib3", "aiohttp", "ftplib", "smtplib", "websocket", "websockets")
+    DOORS = {("post_json", "urllib.request"), ("post_json", "urllib.error"), ("post_json", "ssl"),
+             ("webhook_handler", "http.server"), ("serve_webhook", "http.server"), ("serve_webhook", "ssl")}
+
+    def network_imports(self, text):
+        """-> {(the function the import sits in, or None at the top; the module)} for every network import."""
+        found = set()
+
+        def walk(node, where):
+            for child in ast.iter_child_nodes(node):
+                names = []
+                if isinstance(child, ast.Import):
+                    names = [a.name for a in child.names]
+                elif isinstance(child, ast.ImportFrom) and child.module:
+                    names = [child.module] + ["%s.%s" % (child.module, a.name) for a in child.names]
+                for name in names:
+                    if any(name == n or name.startswith(n + ".") for n in self.NET):
+                        found.add((where, name))
+                walk(child, child.name if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)) else where)
+
+        walk(ast.parse(text), None)
+        return found
+
+    def test_network_code_only_in_the_messenger_doors(self):
+        """The doors are exactly where they should be - the walk must find all six imports, which proves it looks -
+        and no other file or function of the plugin imports a network module, by name or by __import__."""
+        found = {}
         for path in ROOT.rglob("*.py"):
-            if "tests" in path.parts:
+            rel = path.relative_to(ROOT)
+            if rel.parts[0] == "tests":
                 continue
-            assert not net.search(path.read_text(encoding="utf-8")), path
+            text = path.read_text(encoding="utf-8")
+            assert "__import__" not in text and "import_module" not in text, rel
+            imports = self.network_imports(text)
+            if imports:
+                found[rel.as_posix()] = imports
+        assert found == {"skills/teamcall/scripts/teamcall.py": self.DOORS}
+
+    def test_network_json_declares_exactly_the_doors_and_hosts(self):
+        """network.json is what the company and poly-a1's business gate read: the files and functions that may open
+        the network, and the hosts they reach. It says exactly the doors above and the hosts lesson sends to."""
+        declared = json.loads((ROOT / "network.json").read_text())
+        assert set(declared) == {"hosts", "doors"}
+        assert tuple(declared["hosts"]) == tc.SEND_HOSTS
+        assert {f: set(fns) for f, fns in declared["doors"].items()} == \
+            {"skills/teamcall/scripts/teamcall.py": {door for door, _ in self.DOORS}}
+        security = (ROOT / "SECURITY.md").read_text()
+        assert all(host in security for host in declared["hosts"])
+
+    def test_control_a_planted_network_import_is_seen(self):
+        planted = "import json\nimport urllib.parse\n\n\ndef helper():\n    import socket\n    from urllib import request\n"
+        assert self.network_imports(planted) == {("helper", "socket"), ("helper", "urllib.request")}
+        assert self.network_imports("import socket\n") == {(None, "socket")}
 
     def test_no_bin_folder_and_the_common_files(self):
         assert not (ROOT / "bin").exists()

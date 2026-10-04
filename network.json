@@ -1,0 +1,6 @@
+{
+  "hosts": ["api.telegram.org", "graph.facebook.com"],
+  "doors": {
+    "skills/teamcall/scripts/teamcall.py": ["post_json", "webhook_handler", "serve_webhook"]
+  }
+}

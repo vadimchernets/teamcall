@@ -1,7 +1,7 @@
 ---
 name: teamcall
-description: Move a company's people from the chat window to a terminal agent in 30 days, and measure it. Use it when someone sets up AI for a team or company and asks how to get colleagues working in Claude Code (or Codex, Antigravity, Copilot CLI and the others), how to run a pilot of 5 people and grow it to 30-50, who should be the champion, what a 20-minute first session looks like, how to keep a journal of who got stuck where, how to report time, quality, coverage, repeatability, new capability and risk, whether to scale or stop, which seat already pays for which terminal agent, or how to turn a task done in the app into one command in the terminal.
-argument-hint: "[plan | fast | champion | boost | log | measure | report | decide | move | agents | detect] [what for]"
+description: Move a company's people from the chat window to a terminal agent in 30 days, and measure it. Use it when someone sets up AI for a team or company and asks how to get colleagues working in Claude Code (or Codex, Antigravity, Copilot CLI and the others), how to run a pilot of 5 people and grow it to 30-50, who should be the champion, what a 20-minute first session looks like, how to keep a journal of who got stuck where, how to report time, quality, coverage, repeatability, new capability and risk, whether to scale or stop, which seat already pays for which terminal agent, how to turn a task done in the app into one command in the terminal, or how to send the employees one short lesson card a day in Telegram or WhatsApp on leading an agent and approving its steps.
+argument-hint: "[plan | fast | champion | boost | log | measure | report | decide | move | agents | detect | lesson] [what for]"
 allowed-tools: Bash(sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py *) PowerShell(${CLAUDE_PLUGIN_ROOT}/hooks/python.ps1 teamcall say skills/teamcall/scripts/teamcall.py *) Read Write
 ---
 
@@ -117,3 +117,57 @@ and roundcall), each with its source page and the day it was read, and the compa
 a cleaned copy with a prepaid balance, Kimi in a training folder, Antigravity and Gemini CLI with permissions one by
 one. gatecall enforces those rules. `detect` says which of them are on this computer and how Claude Code is signed
 in here (an API key or a custom `ANTHROPIC_BASE_URL` turns the phone remote off).
+
+## 8. One card a day in Telegram or WhatsApp
+
+Short daily lessons where the person already is — the messenger on their phone, nothing to install. One card a
+working day on leading an agent and approving its steps (20 cards), with three buttons: done, show me (the bot answers
+with the exact words to type), skip. Each person goes through the cards at their own pace, from card 1 on their first
+working day, so whoever joins later still gets all 20 in order. The company's own bot sends them; the answers go
+into the journal, and `report` counts them without names. Each person gets the cards in their own language.
+
+The bot is the company's: the person responsible creates it (Telegram: @BotFather) and puts its token into
+`~/.teamcall.env` themselves (`TEAMCALL_TELEGRAM_TOKEN=…`, one `TEAMCALL_NAME=value` per line). Never ask for a token
+in the conversation and never write one into a file yourself; `teamcall lesson schedule` shows the names it reads.
+
+```
+sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py lesson invite --person "<name>" --lang <code>
+sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py lesson card --lang <code>
+sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py lesson send
+sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py lesson pull
+sh "${CLAUDE_PLUGIN_ROOT}/hooks/python.sh" teamcall say skills/teamcall/scripts/teamcall.py lesson schedule --at 09:00 --folder "<company folder>"
+```
+
+`lesson pull` reads the presses and messages since the last run, once, and ends. The receiver that stays on is
+`pull --loop`, and the schedule starts it: it runs until stopped, so never start it from the conversation.
+
+`invite` prints a link for that person: one tap on the phone, Start, and the cards come (`card` in the chat brings
+the card of the day again, `stop` ends them, `start` brings them back). `card` shows the card of the pilot's day;
+`send` gives each person who joined their own next card, one a day — a second run the same day sends nothing, a day
+nobody sent moves the cards and loses none, and nobody begins before the start `plan` wrote into the journal (a plan
+written again without `--start` keeps it). `send` also names who was invited and has not joined yet; a messenger
+whose setting is missing holds up no other — its chats are named as not delivered, with the setting, and the rest
+get their cards. `pull --loop` is the Telegram receiver that stays on and answers "show me" with the card's example.
+`schedule` writes the launcher
+`teamcall-run.sh` (Windows: `teamcall-run.py`) into the company's folder and prints the lines for cron (Mac, Linux)
+or Task Scheduler (Windows): the cards every 15 minutes of each working day from `--at` to 20:00, so a computer that
+was asleep sends when it wakes, and the two receivers every 5 minutes, each only once and only when its messenger's
+settings are in place. The lines name the launcher, never the plugin's version folder: on every run it finds the
+newest teamcall installed now, so an update of the plugin keeps the schedule working. On Windows the tasks run without
+a window, on battery too, and catch up a run missed while the computer was off.
+
+WhatsApp is the second channel: `lesson invite --channel whatsapp` gives a wa.me link to the company's number (or
+`--phone` puts a number on the list at once, even before the WhatsApp settings are in — the missing one is named). A
+person with a WhatsApp username may come without a number: Meta names them by their user id, and the cards go to
+that id. `lesson template --create` sends the note template in five languages to
+Meta for approval, once, and prints the category Meta gives it; `lesson serve` is the receiver Meta brings the buttons
+to, behind the company's HTTPS (or with `--cert` and `--cert-key`, then on every address of the computer). Inside 24
+hours after the person's last message the card goes with reply buttons; after them goes the approved note that the
+person's own card is ready, with one button, Open the card — no lesson text, so it stays utility — and the tap brings
+the card. Any message from the person brings their next card. A card Meta reports as not delivered is not counted
+and stays the person's next card; a move of the template to another category is said with the way to a review.
+
+Where `lesson serve` runs behind the company's HTTPS, `lesson webhook --url https://<that address>/telegram` has
+Telegram bring each Start and press there at once, so none waits on a computer that is off (Telegram keeps an update
+24 hours); the receiver takes only requests carrying the secret made from the bot's token. `--off` hands them back to
+`pull`.

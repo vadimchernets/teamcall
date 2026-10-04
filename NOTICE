@@ -7,9 +7,45 @@ The six measurements of a pilot (time, quality, coverage, repeatability, new cap
 checks) and the key number "minutes of human help per successful first artifact" come from the Poly A1
 author's own pilot plan (2026-09-19). "termboost" - the same task once in the app and once in the
 terminal, then again with one command - is an idea from the council run for the Poly A1 track for
-companies (2026-10-02), built here as `teamcall boost`.
+companies (2026-10-02), built here as `teamcall boost`. The daily cards in the messenger the employee
+already has, with nothing to install, teaching how to lead an agent and approve its steps, come from the
+Poly A1 phone research (2026-10-03), built here as `teamcall lesson`.
 
 Public references (as read on 2026-10-02):
 - Claude Code install commands: https://code.claude.com/docs/en/setup
 - Remote Control and what turns it off: https://code.claude.com/docs/en/remote-control
 - Every row of data/agents.json names its own page and the day it was read.
+
+Public references for `teamcall lesson` (as read on 2026-10-03):
+- Telegram Bot API 10.3 (sendMessage, inline keyboards, getUpdates, answerCallbackQuery):
+  https://core.telegram.org/bots/api
+- Telegram deep links with a start parameter: https://core.telegram.org/bots/features#deep-linking
+- WhatsApp Cloud API reply buttons (v25.0 in Meta's examples):
+  https://developers.facebook.com/docs/whatsapp/cloud-api/messages/interactive-reply-buttons-messages
+- WhatsApp templates, the customer service window and quick replies:
+  https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/overview
+- Meta webhooks: the verify token and X-Hub-Signature-256: https://developers.facebook.com/docs/graph-api/webhooks/getting-started
+- Claude Code permissions and Remote Control, as the cards name them: https://code.claude.com/docs/en/permissions
+- WhatsApp template categories (utility: non-promotional and about the person's own subscription), the
+  template_category_update webhook and the per-user limits of marketing templates:
+  https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/template-categorization
+  https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/reference/template_category_update/
+  https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/marketing-templates/per-user-limits/
+- Each card at its own pace from the day the person joins, the way online courses release lessons from the day of
+  enrolment.
+- WhatsApp business-scoped user ids: a person with a username comes without a number (from_user_id), and a message
+  goes to them as recipient:
+  https://developers.facebook.com/documentation/business-messaging/whatsapp/business-scoped-user-ids/
+- Claude Code's plugin versions, each in its own folder, the old one removed 14 days after an update:
+  https://code.claude.com/docs/en/plugins/loading
+- cron runs nothing while a Mac sleeps: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/ScheduledJobs.html
+- Task Scheduler settings (on battery, a missed run, no time limit):
+  https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtasksettingsset
+- pythonw.exe and pyw.exe, Python without a console window: https://docs.python.org/3/using/windows.html
+- The UTF-16 and BOM files of Windows PowerShell 5.1:
+  https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding
+- Telegram keeps an update 24 hours; getUpdates long polling; setWebhook with secret_token:
+  https://core.telegram.org/bots/api#getting-updates https://core.telegram.org/bots/api#setwebhook
+- A threaded HTTP server, and a TLS handshake left to the connection:
+  https://docs.python.org/3/library/http.server.html#http.server.ThreadingHTTPServer
+  https://docs.python.org/3/library/ssl.html#ssl.SSLContext.wrap_socket
