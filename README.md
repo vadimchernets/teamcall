@@ -1,5 +1,7 @@
 # teamcall
 
+> Poly helped? [Give it a star on GitHub](https://github.com/vadimchernets/teamcall) - one click. The plugin is open to everyone either way.
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23116725.svg)](https://doi.org/10.5281/zenodo.23116725)
 
 A company's people, from the chat window to a terminal agent in 30 days — and the numbers to show it worked. A
